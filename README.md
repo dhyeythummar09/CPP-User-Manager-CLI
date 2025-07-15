@@ -23,11 +23,11 @@ It demonstrates classic OOP features—**inheritance, polymorphism, virtual dest
 
 ```bash
 # Clone repository
-git clone https://github.com/<your‑username>/cpp-user-manager-cli.git
+git clone https://github.com/dhyeythummar09/CPP-User-Manager-CLI.git
 cd cpp-user-manager-cli
 
 # Compile
-g++ -std=c++17 src/main.cpp -o usermgr
+g++ -std=c++17 main.cpp -o usermgr
 
 # Run
 ./usermgr
