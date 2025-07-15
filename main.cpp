@@ -26,12 +26,15 @@ public:
         return username;
     }
 
+    // method to check password validity
     bool checkPassword(string enteredPassword) const{
         return (password == enteredPassword);
     }
 
+    // Virtual method to get the role of user
     virtual string getRole() const = 0; // pure virtual which makes User Class abstract
 
+    // Method to get complete user info.
     string getUserInfo() const {          
         return ("Name: " + name + ", Username: " + username + ", Role: [" + getRole() + "]\n"); 
     }
@@ -65,7 +68,7 @@ public:
     }
 };
 
-
+// UserManager class to manage user requests
 class UserManager{
 private:
     vector<User*> users;    // vector containing list of pointers of all users
@@ -155,6 +158,7 @@ public:
         cout << "\t\tUser not found!\n";
     }
 
+    // method for user logout
     void userLogout(){
         if(loggedInUser == nullptr){
             cout << "Error! No user currently logged in....\n\n ";
@@ -165,6 +169,7 @@ public:
         loggedInUser = nullptr;
     }
 
+    // method to get info about currently logged in user
     void getLoggedInUser() const{
         if(loggedInUser == nullptr){
             cout << "Error! No user currently logged in....\n\n ";
@@ -183,7 +188,7 @@ int main()
     UserManager manager;
     char choice = 'Y';
     while(choice == 'y' || choice == 'Y'){
-        system("cls");
+        
         int op;
         cout << "\n========== USER MANAGER ==========\n";
         cout  << "Choose an option: \n";
@@ -200,7 +205,7 @@ int main()
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
         switch(op){
-            case 0: {
+            case 0: {    // exit option
                 return 0;
             }    
 
@@ -222,29 +227,31 @@ int main()
                 break;
             }
 
-            case 4: {   // show all users 
+            case 4: {     // show all users 
                 manager.showAllUsers();
                 break;
             }    
 
-            case 5: { // delete user
+            case 5: {     // delete user
                 string uname;
                 cout << "Username to delete: ";
                 cin >> uname;
                 manager.deleteUser(uname);
                 break;
             }
-            case 6:
+            case 6:      // get logged in user info
                 manager.getLoggedInUser();
                 break;
 
-            case 7:
+            case 7:      // log out
                 manager.userLogout();
                 break;
 
-            default:
+            default:    // invalid request
                 cout << "Invalid option. Try again.\n\n";
         }
+
+        // asking whether he wants to make more requests or exit from User Manager
         cout << "Do You Want to Continue [Y/N]? : ";
         cin>>choice;
     }
